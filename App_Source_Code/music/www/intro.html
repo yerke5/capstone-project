@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Music Therapy App</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	</head>	
+	<body style='background-image: linear-gradient(to bottom, rgb(126, 206, 244, 1), rgb(126, 206, 244, 0))'> <!--style="background: url('img/background.jpg');background-repeat:no-repeat;background-size:cover"-->
+		<div id="main">
+			<div id="wrapper">
+				<p id='descText' style="padding:40px;font-size:1.5em;color:#3e3e3e">First, let's find out more about you so that we can customise your experience. We are very careful about handling your data, so rest assured that it will never be shared with anyone.</p>
+				<a class="button" style="margin:10px auto;width:50%;background-color: rgb(255,255,255,0.5);color:#00000094" href="questions.html">Proceed</a>
+				<div id='dbContents'></div>
+			</div>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/vars.js"></script>
+		<script src="js/MessageHandler.js"></script>
+		<script src="js/RemoteDatabaseHandler.js"></script>
+		<script src='js/LocalDatabaseHandler.js'></script>
+		<script src="js/introQuestions.js"></script>
+		
+		<script src='js/ThemeHandler.js'></script>
+		<script>
+			$('#descText').append(' There will be ' + getNumQuestions() + ' questions for You to answer. :)');
+			ThemeHandler.init('intro', commonElemSelectors);
+			/*var answers = [
+				{key: "userID", value: "yerke"},
+				{key: "nervousnessLevel", value: 0},
+				{key: "worryLevel", value: 0},
+				{key: "anxietyColor", value: "rgb(255, 191, 0)"},
+				{key: "happinessColor", value: "rgb(149, 173, 245)"},
+				{key: "calmnessColor", value: "rgb(204, 204, 204)"},
+				{key: "instrumentPreference", value: "tuba"},
+				{key: "tempoPreference", value: "slow"},
+				{key: "genrePreference", value: "electronic"}
+			];
+			answers.push({"key": "anxietyScore", "value": calculateAnxietyScore(answers)});
+			insertAllDB(answers, function(){alert('Success!');});*/
+			/*var userInfo = {
+				"userID": "yerke",
+				"anxietyScore": 0,
+				"type": "questionnaireAnswers",
+				"anxietyColor": "rgb(255, 191, 0)",
+				"happinessColor": "rgb(149, 173, 245)",
+				"calmnessColor": "rgb(204, 204, 204)",
+				"instrumentPreference": "tuba",
+				"tempoPreference": "slow",
+				"genrePreference": "electronic"
+			};
+			RemoteDatabaseHandler.addUserInfo(
+				JSON.stringify(userInfo), 
+				function(data) {
+					MessageHandler.showSuccess("Insertion successful! " + data);
+				}, 
+				function(e) {
+					MessageHandler.showError("Error adding user info to AWS " + e.responseText);
+				}
+			);*/
+		</script>
+		<script>
+			var db = openDatabase('user', '1.0', 'Test DB', 2 * 1024 * 1024); 
+			db.transaction(function (tx) {   
+				tx.executeSql('SELECT * FROM UserInfo', [], function (tx, results) { 
+					var len = results.rows.length, i; 
+					document.getElementById('dbContents').innerHTML += "The number of rows is " + len + "<br>";
+
+					for (i = 0; i < len; i++) { 
+						document.getElementById('dbContents').innerHTML += results.rows.item(i).key + " | " + results.rows.item(i).value + "<br>"; 
+					}
+				}, function(tx, error) {
+					alert('Something went wrong while reading db contents: ' + error.message);
+				}); 
+			});
+		</script>
+	</body>
+</html>

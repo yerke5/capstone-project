@@ -1,0 +1,155 @@
+@font-face {
+	font-family: Trajan;
+	src: url("../fonts/Trajan Pro 3 Extralight.otf");
+}
+
+@font-face {
+	font-family: Bubbler;
+	src: url("../fonts/BubblerOne-Regular.ttf");
+}
+
+@font-face {
+	font-family: Quesha;
+	src: url("../fonts/Quesha.ttf");
+}
+
+@font-face {
+	font-family: Trajan Pro;
+	src: url("../fonts/trajan pro.ttf");
+}
+
+@font-face {
+	font-family: Raleway;
+	src: url("../fonts/Raleway-Regular.ttf");
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	text-transform: initial;
+	font-family: Raleway
+}
+
+html, body {
+	height: 100%;
+}
+
+p, button, input, a {
+	font-family: Bubbler !important;
+	font-size:1em
+}
+
+p, a {
+	font-size: 1.3em
+}
+
+h1 {
+	font-family:Quesha !important;
+	color:#000077 !important
+}
+
+.row {
+	margin: 0 !important
+}
+
+#main {
+	height:100%;
+	width:100%;
+	display:table
+}
+
+#wrapper {
+	display: table-cell;
+	height:100%;
+	vertical-align:middle
+}
+
+#menuBtn {
+	margin-top: 5%;
+	margin-left: 5%;
+	color:#000077;
+	font-size:1.3em
+}
+
+.button {
+	border-radius: 5px;
+	width:100%;
+	display:block;
+	padding:15px;
+	font-family:Raleway;
+	background-color:#7ecef4;
+	border:none;
+	color:#000;
+	text-align:center
+}
+
+#bottomMenu {
+	position: fixed;
+	background-color:#7ecef4;
+	bottom:0;
+	left: 0;
+	right: 0;
+	font-family:Bubbler
+}
+
+#bottomMenu table {
+	width:100%;
+	table-layout:fixed;
+}
+
+.bottomMenuBtn {
+	color: white;
+    padding: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#bottomMenu table tr td {
+	text-align:center;
+}
+
+.bottomMenuDesc {
+	font-size: 0.7em;
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.currentBottomMenuBtn {
+	background-color: white;
+    box-shadow: rgb(145, 145, 145) 0px 10px 10px
+}
+
+.currentBottomMenuBtn span {
+	color:#000077;
+}
+
+.main {
+	height:100%;
+	width:100%;
+	display:table
+}
+
+.wrapper {
+	display: table-cell;
+	height:100%;
+	vertical-align:middle
+}
+
+#usernameForm {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:100;
+	background-color:white
+}
+
+.closeBtn {
+	position:absolute;
+	right: 4%;
+	top:7%;
+	font-size:1.5em;
+	color:#000077
+}

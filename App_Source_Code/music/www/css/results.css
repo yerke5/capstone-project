@@ -1,0 +1,60 @@
+#banner {
+  width: 60%;
+  height: 550px;
+  position: relative;
+  background: #fff;
+  border-radius: 10%;
+  overflow: hidden;
+  border:1px solid #ccc;
+  margin: 0 auto
+}
+#banner::before {
+  content: '';
+  position: absolute;
+  background: #04ACFF;
+  width: 100%;
+  bottom: 0;
+  animation: wipe 5s cubic-bezier(.2,.6,.8,.4) forwards;
+}
+@keyframes wipe {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+#glass {
+	width: 60%;
+	height: 250px;
+	position: relative;
+	//background: url("../img/glass.svg");
+	border-radius: 7%;
+	overflow: hidden;
+	border:1px solid #ccc;
+	margin: 0 auto;
+	margin-bottom: 10%;
+	font-family: Raleway
+}
+
+#water {
+	content: '';
+	position: absolute;
+	background: #7ecef4;/*#04ACFF;*/
+	width: 100%;
+	bottom: 0;
+}
+
+#desc h1 {
+	font-family: Quesha;
+	color: #000077;
+	font-size:36px;
+	line-height:25px
+}
+
+#desc {
+	margin-top: 30%;
+	margin-bottom: 5%;
+	text-align: center
+}

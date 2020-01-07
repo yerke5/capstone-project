@@ -1,0 +1,128 @@
+#top img, #bottom img {
+	width: 100%
+}
+
+#bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0
+}
+
+#welcome p {
+	font-family: Quesha;
+	font-size:2.5em;
+	text-align: center
+}
+
+#divider {
+	text-align: center
+}
+
+#start {
+	background-color: #84c1ff;/*#1b4c8a;/*#59E1F4;*/
+	border: 0;
+	border-radius:5px;
+	font-family: Raleway;
+	width: 150px;
+	padding:20px;
+	margin:0 auto;
+	box-shadow: 0 0 10px #ccc;
+	display:block;
+	text-decoration:none;
+	color:#fff
+}
+
+#start-btn-wrapper {
+	margin: 0 auto;
+	text-align: center;
+	padding-top:1em
+}
+
+#ocean { width:100%;z-index: 100;}
+
+.wave1, .wave2 {
+  position: absolute;
+  bottom: 0;
+  background: #d6eaff;/*#7ecef4;*/
+  opacity: 0.5;
+  display: inline-block;
+  height: 15%; /* 35 */
+  width: 10px;
+  position: absolute;
+  z-index: 5 !important;
+  animation-name: dostuff;
+  animation-duration: 5s;/*2.74159s*/
+  animation-iteration-count: infinite;
+  transition-timing-function: ease-in-out;
+}
+.wave_middle1, .wave_middle2 {
+  position: absolute;
+  bottom: 0;
+  background: #9bcdff;/*#0068b7;*/
+  opacity: 0.3;
+  display: inline-block;
+  height: 10%; /* 27 */
+  width: 10px;
+  position: absolute;
+  z-index: 5 !important;
+  animation-name: dostuff_mid;
+  animation-duration: 10s; /*3.42*/
+  animation-iteration-count: infinite;
+  transition-timing-function: ease-in-out;
+}
+.wave_bottom1, .wave_bottom2 {
+  position: absolute;
+  bottom: 0;
+  background: #84c1ff;/*#002e73;*/
+  opacity: 0.8;
+  display: inline-block;
+  height: 7%; /* 17 */
+  width: 10px;
+  position: absolute;
+  z-index: 5 !important;
+  animation-name: dostuff_bot;
+  animation-duration: 8s; /* 2.54*/
+  animation-iteration-count: infinite;
+  transition-timing-function: ease-in-out;
+}
+.wave_light1, .wave_light2 {
+  position: absolute;bottom: 10%;background: #fff;opacity: 0.3;display: inline-block;
+  height: 12%; /* 32 */
+  width: 10px;
+  position: absolute;
+  z-index: 5 !important;
+  animation-name: dostuff_light;
+  animation-duration: 8s;/*2*/
+  animation-iteration-count: infinite;
+  transition-timing-function: ease-in-out;
+}
+
+.wave1, .wave_middle1, .wave_bottom1, .wave_light1 {
+	bottom: 0
+}
+
+.wave2, .wave_middle2, .wave_bottom2, .wave_light2 {
+	top: 0
+}
+
+/* amplitude animation*/
+@keyframes dostuff {
+  0% {height: 10%;}
+  50% {height: 24%;} 
+  100% {height: 10%;} /* 15 28 15 */
+}
+@keyframes dostuff_mid {
+  0% {height: 8%;}
+  50% {height: 18%;}
+  100% {height: 8%;} /* 8 18 8 */
+}
+@keyframes dostuff_bot {
+  0% {height: 5%;}
+  50% {height: 15%;}
+  100% {height: 5%;} /* 5 15 5 */
+}
+@keyframes dostuff_light {
+  0% {height: 1%;bottom: 12%;}
+  50% {height: 4%;bottom: 15%;}
+  100% {height: 1%;bottom: 12%;}
+}

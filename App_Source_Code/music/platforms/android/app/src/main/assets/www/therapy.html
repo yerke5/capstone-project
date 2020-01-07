@@ -1,0 +1,383 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Music Therapy App</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="css/therapy.css" type="text/css">
+		<link rel="stylesheet" href="css/player.css" type="text/css">
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<link rel="stylesheet" href="css/welcome.css" type="text/css">
+	</head>	
+	<body>
+		<div id="menuBtn">
+			<span class='glyphicon glyphicon-align-justify' />
+		</div>
+		
+		<div id='libraryPage'>
+			<!-- search bar -->
+			<div class="row">
+				<div id="search-wrapper" class="col-sm-10 col-offset-1">
+					<input placeholder='Search' type="search" id="search-bar" />
+					<span id="search-icon" class="glyphicon glyphicon-search"></span>
+				</div>
+			</div>
+			<!-- songs' list -->
+			<div class="row">
+				<div class="col-xs-12" style='padding:0' id='libraryContent'>
+				</div>
+			</div>
+		</div>
+		
+		<div id='preSessionQuestions'>
+			<div class='row'>
+				<div class='col-xs-10 col-xs-offset-1'>
+					<div id='main'>
+						<div id='wrapper'>
+							<div id='question1'>
+								<span class='preSessionCloseBtn closeBtn glyphicon glyphicon-remove'></span>
+								<h1 style='margin-top:15%'>What is your goal for today?</h1>
+								<p>Research shows that one of the keys to motivation is to set specific, measurable goals. Well then, let's get motivated! :)</p>
+								<table id='sessionGoals'>
+									<tr>
+										<td>
+											<div id='inspiration' class='sessionGoal'>
+												<img src='img/inspiration.jpg'>
+												<p>Inspiration</p>
+											</div>
+											
+										</td>
+										<td>
+											<div id='sleep' class='sessionGoal'>
+												<img src='img/sleep.jpg'>
+												<p>Sleep</p>
+											</div>
+										</td>
+										<td>
+											<div id='relaxation' class='sessionGoal'>
+												<img src='img/relax.jpg'>
+												<p>Relaxation</p>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<button id='sessionGoalBtn' class='button'>Next</button>
+							</div>
+							<div id='question2' style='display:none'>
+								<span class='preSessionCloseBtn closeBtn glyphicon glyphicon-remove'></span>
+								<h1 style='margin-top:15%'>How do you feel now?</h1>
+								<p>Please slide on the glass below. The more water is in the glass, the better you feel :)</p>
+								<div id='preSessionGlassWrapper' class='sessionGlassWrapper' style='position:relative'>
+									<div id='preSessionCup' class='cup'>
+										<div id='preSessionWater' class='sessionWater'></div>
+									</div>
+								</div>
+								<button id='preSessionBtn' class='button'>Submit</button>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='postSessionQuestions'>
+			<div class='row'>
+				<div class='col-xs-10 col-xs-offset-1'>
+					<div id='main'>
+						<div id='wrapper'>
+							<span class='postSessionCloseBtn closeBtn glyphicon glyphicon-remove'></span>
+							<h1 style='margin-top:15%'>How do you feel after the session?</h1>
+							<p>Please slide on the glass below. The more water is in the glass, the better you feel :)</p>
+							<div id='postSessionGlassWrapper' class='sessionGlassWrapper' style='position:relative'>
+								<div id='postSessionCup' class='cup'>
+									<div id='postSessionWater' class='sessionWater'></div>
+								</div>
+							</div>
+							<button id='postSessionBtn' class='button'>Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='playerWrapper'>
+			<div class="row" style='position:relative'>
+				<div class="col-xs-12" style='padding:0'>
+					<div id='main'>
+						<div id='wrapper'>
+							<div id='overlay' onclick='console.log("overlay was clicked");$("#player").fadeOut(500);$("#overlay").fadeOut(500);'></div>
+							<div id='background-video' onclick='console.log("background-video div was clicked");$("#player").fadeIn(500);$("#overlay").fadeIn();'>
+								<video autoplay muted loop id="myVideo">
+								  <source src="video/water.mp4" type="video/mp4">
+								</video>
+							</div>
+							<div id='player' style='position:relative'onclick='console.log("player was clicked")'>
+								<!--<img id='back' src='img/back.png' onclick='$("#player").fadeOut(1000);'/>-->
+								<!--<button id='prevBtn'><span class='glyphicon glyphicon-backward'></span></button>-->
+								<img id='playBtn' src='img/play-water.svg'/>
+								<p id='songTitleText'>Song Title</p>
+								<div id='playerBarWrapper'>
+									<p id='curTime'>00:00</p>
+									<div id='progressBarWrapper'>
+										<div id='progressBar' style='position:relative'>
+											<div id='loadedBar'></div>
+											<div id='preloadedBar'></div>
+											<div id="slider"></div>
+										</div>
+									</div>
+									<p id='duration'>00:00</p>
+								</div>
+								<div id='playerBtnsWrapper'>
+									<button id='closeBtn'><span class='glyphicon glyphicon-remove'></span></button>
+									<button id='prevBtn' style='padding:30px'><span class='glyphicon glyphicon-backward'></span></button>
+									<button id='nextBtn' style='padding:30px'><span class='glyphicon glyphicon-forward'></span></button>
+									<button id='reflectionBtn'><span class='glyphicon glyphicon-align-justify'></span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='recommendedPage' class='currentPage'>
+			<div class='row'>
+				<div class='col-xs-12'>
+					<h1 style='margin-top:30%'>Recommended for You today</h1>
+					<div id='sessionStartDiv'>
+						<div class='main'>
+							<div class='wrapper'>
+								<span style='display:none' id='sessionStartBtn' class='glyphicon glyphicon-play'></span>
+								<img id='loadingImg' style="border-radius:50%;width:50%;" src="img/loading.gif" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='customisationPage'>
+			<h1 style="margin-top:20%;margin-bottom:5%">Customization</h1>
+			<div id='customThemeDiv'></div>
+		</div>
+		<div id='statsPage'></div>
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src='js/vars.js'></script>
+		<script src='js/AudioPlayer.js'></script>
+		<script src='js/PlaylistBuilder.js'></script>
+		<script src='js/LocalDatabaseHandler.js'></script>
+		<script src='js/RemoteDatabaseHandler.js'></script>
+		<script src='js/MessageHandler.js'></script>
+		<script src='js/ThemeHandler.js'></script>
+		<script src='js/waves.js'></script>
+		<script>
+			// initialise vars
+			var elemSelectors = {
+				"player": "#player",
+				"playBtn": "#playBtn",
+				"prevBtn": "#prevBtn",
+				"nextBtn": "#nextBtn", 
+				"songTitleText": "#songTitleText",
+				"playBtnMinimized": ".playBtnMinimized",
+				"genericBtn": ".button",
+				"loadedBar": "#loadedBar",
+				"preloadedBar": "#preloadedBar",
+				"progressBar": "#progressBar",
+				"slider": "#slider",
+				"curTime": "#curTime",
+				"duration": "#duration",
+				"playerBarWrapper": "#playerBarWrapper",
+				"bottomMenu": "#bottomMenu",
+				"firstTag": ".goal",
+				"secondTag": ".genre",
+				"thirdTag": ".mood",
+				"menuBtn": "#menuBtn span",
+				"backgroundVideo": "#background-video video",
+				"selectedThemeDiv": ".selectedThemeDiv",
+				"recommendedDiv": "#sessionStartDiv"
+			}
+			
+			var playlist = null;
+			var maxNumSongs = 10;
+			
+			$(document).ready(function() {
+				// load bottom menu
+				$(document.body).append($(bottomMenu));
+				
+				// initialise click handlers
+				setBtnToCurrent('recommendedBtn');
+				
+				// prepare recommended playlist
+				ThemeHandler.init("therapy", elemSelectors, function() {
+					getUserID(function(userID) {
+						PlaylistBuilder.buildPlaylist(maxNumSongs, userID, function(){
+							console.log("buildPlaylist(): Recommended playlist was built");	
+							$('#loadingImg').hide();
+							$('#sessionStartBtn').css({"opacity":1});
+							$('#sessionStartBtn').fadeIn(500);
+							$('#sessionStartBtn').click(function() {
+								//open('preSessionQuestions');
+								openPreSession();
+							});
+						});					
+					});
+				});
+				
+				$('#preSessionCup').click(function(evt) {
+					var clickPoint = Math.round(((evt.clientY - $(this).offset().top) + window.pageYOffset));
+					var cupHeight = $(this).outerHeight();
+					var newValue = cupHeight - clickPoint;
+					if(newValue > cupHeight - 35) newValue = cupHeight - 35;
+					var newHeight = (newValue * 100 / cupHeight) + "%";
+					$('#preSessionWater').css({
+						"height": newHeight
+					});
+					//cupHandler(evt, "#preSessionWater");
+				});
+				
+				$('#postSessionCup').click(function(evt) {
+					var clickPoint = Math.round(((evt.clientY - $(this).offset().top) + window.pageYOffset));
+					var cupHeight = $(this).outerHeight();
+					var newValue = cupHeight - clickPoint;
+					if(newValue > cupHeight - 35) newValue = cupHeight - 35;
+					var newHeight = (newValue * 100 / cupHeight) + "%";
+					$('#postSessionWater').css({
+						"height": newHeight
+					});
+					//cupHandler(evt, "#postSessionWater");
+				});
+				
+				$('#preSessionCup').bind("touchstart", function(evt) {
+					var touch = evt.touches[0];
+					var clickPoint = Math.round(((touch.clientY - $(this).offset().top) + window.pageYOffset));
+					var cupHeight = $(this).outerHeight();
+					var newValue = cupHeight - clickPoint;
+					if(newValue > cupHeight - 35) newValue = cupHeight - 35;
+					var newHeight = (newValue * 100 / cupHeight) + "%";
+					$('#preSessionWater').css({
+						"height": newHeight
+					});
+					//cupHandler(evt.touches[0], "#preSessionWater");
+				});
+				
+				$('#postSessionCup').bind("touchstart", function(evt) {
+					var touch = evt.touches[0];
+					var clickPoint = Math.round(((touch.clientY - $(this).offset().top) + window.pageYOffset));
+					var cupHeight = $(this).outerHeight();
+					var newValue = cupHeight - clickPoint;
+					if(newValue > cupHeight - 35) newValue = cupHeight - 35;
+					var newHeight = (newValue * 100 / cupHeight) + "%";
+					$('#postSessionWater').css({
+						"height": newHeight
+					});
+					//cupHandler(evt.touches[0], "#postSessionWater");
+				});
+				
+				$('#sessionGoalBtn').click(function() {
+					window.localStorage.setItem('sessionGoal', $('.selectedGoal').attr('id'));
+					$('#question1').hide();
+					$('#question2').fadeIn(500);
+				});
+				
+				$('.sessionGoal').click(function() {
+					$(".selectedGoal").first().removeClass("selectedGoal");
+					$(this).addClass("selectedGoal");
+				});
+				
+				$('#recommendedBtn').click(function() {
+					setBtnToCurrent($(this).attr('id'));
+					open($(this).attr('data'));
+				});
+				
+				$('#statsBtn').click(function() {
+					setBtnToCurrent($(this).attr('id'));
+					open($(this).attr('data'));
+				});
+				
+				$('#libraryBtn').click(function() {
+					setBtnToCurrent($(this).attr('id'));
+					open($(this).attr('data'));
+					PlaylistBuilder.buildPlaylist(maxNumSongs, null, function(){
+						PlaylistBuilder.drawPlaylist('libraryContent', function() {
+							ThemeHandler.setThemeHTML("therapy", ThemeHandler.getCurrentTheme().ID, elemSelectors);
+						});
+					});
+				});
+				
+				$('#customisationBtn').click(function() {
+					setBtnToCurrent($(this).attr('id'));
+					open('customisationPage');
+					var themes = ThemeHandler.themes;
+					//console.log("Trying to iterate these fuckers", themes);
+					var html = "";
+					for(var key in themes) {
+						var theme = themes[key];
+						console.log("LOOK HERE:", theme);
+						html += "<div class='row'>" + 
+									"<div class='col-xs-12'>" +
+										"<div data='" + theme.ID + "' class='themeDiv " + ((theme.ID == ThemeHandler.getCurrentTheme().ID) ? "selectedThemeDiv' style='border:5px solid " + theme.primaryColorHex : "") + "'>" +
+											"<h1>" + theme.ID.charAt(0).toUpperCase() + theme.ID.slice(1) + "</h1>" + 
+											"<h2 style='text-align:left'>Colors</h2>" + 
+											"<table class='colorScheme'>" +
+												"<tr>" + 
+													"<td class='colorSchemeBit' style='background-color:" + theme.preloadedBarColor + "'></td>" + 
+													"<td class='colorSchemeBit' style='background-color:" + theme.primaryColorHex + "'></td>" + 
+													"<td class='colorSchemeBit' style='background-color:" + theme.sliderColor + "'></td>" + 
+													"<td class='colorSchemeBit' style='background-color:" + theme.primaryColorDark + "'></td>" +
+												"</tr>" + 
+											"</table>" + 
+											"<h2 style='margin-top:10%'>Animation</h2>" +
+											"<p>" + theme.animation + "</p>" +
+										"</div>" +
+									"</div>" + 
+								"</div>";
+					}
+					$('#customThemeDiv').html(html);
+					$('.themeDiv').click(function() {
+						$('.selectedThemeDiv').first().css({'border':0});
+						$('.selectedThemeDiv').first().removeClass('selectedThemeDiv');
+						$(this).addClass('selectedThemeDiv');
+						ThemeHandler.setThemeHTML("therapy", $(this).attr('data'), elemSelectors);
+						LocalDatabaseHandler.insert("currentThemeID", $(this).attr('data'), null, true);
+					});
+				});
+				
+				$('.preSessionCloseBtn').click(function() {
+					open("recommendedPage");
+				});
+				
+				$('.postSessionCloseBtn').click(function() {
+					$('#postSessionQuestions').fadeOut(500);
+				});
+				
+			});
+			
+			function open(pageID) {
+				$('.currentPage').hide();
+				$('.currentPage').first().removeClass('currentPage');
+				$("#" + pageID).fadeIn(500);
+				$("#" + pageID).addClass("currentPage");
+			}
+			
+			function getUserID(callback) {
+				LocalDatabaseHandler.get("userID", function(results) {
+					var len = results.rows.length, i;
+					if(len == 0) {
+						MessageHandler.askUserID(function() {
+							var userID = $.trim($('#usernameInput').val());
+							callback(userID);
+						});
+					} else {
+						var userID = results.rows.item(0).value;
+						callback(userID);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

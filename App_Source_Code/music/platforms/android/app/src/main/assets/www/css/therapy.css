@@ -1,0 +1,316 @@
+body {
+	/*background-image: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;*/
+}
+
+.h2, h2 {
+	font-size: 1.5em;
+    font-family: Bubbler;
+    font-weight: bold;
+}
+
+#search-wrapper { 
+	position: relative;
+    margin: 0 auto;
+    margin-top: 50px;
+	margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+#search-bar { 
+	text-indent: 35px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+	box-shadow: 0 2px 7px #dadada
+}
+
+#search-icon { 
+  position: absolute;
+    top: 15px;
+    left: 30px;
+    font-size: 15px;
+}
+
+.song-wrapper {
+	box-shadow: 0 2px 7px #dadada;
+	width: 100%;
+	margin: 0 auto;
+	padding: 10px;
+	margin-bottom: 10px;
+	font-family: Bubbler
+}
+
+.song-info td {
+	//width:70px;
+	padding: 7px
+}
+
+.song-info {
+	width:100%;
+	margin:0 auto;
+	table-layout:fixed;
+}
+
+.play-btn-wrapper {
+	border-radius: 50%;
+	box-shadow: 0 2px 7px #dadada;
+	width:70px
+}
+
+.tag {
+	border-radius: 3px;
+	padding:5px;
+	font-size:0.7em;
+	text-align:center;
+	box-shadow: 2px 2px 2px #ccc;
+}
+
+.goal {
+	background-color: #7ecef4;
+}
+
+.genre {
+	background-color: #FFCCCC
+}
+
+.mood {
+	background-color: #bae628
+}
+
+.label-title {
+	color: #000077;
+	font-size:1.2em
+}
+
+.label-artist {
+	color: grey;
+}
+
+.label-duration {
+	font-size: 0.8em;
+	text-align:center;
+	width:20%;
+}
+
+.play-btn-td {
+	padding-right:20px;
+	width:30%;
+	text-align:center;
+}
+
+#playerWrapper {
+	display: none;
+	width:100%;
+	position:fixed;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	background-color: #fff;
+	z-index:2
+}
+
+#preSessionQuestions, #postSessionQuestions {
+	position:fixed;
+	top:0;
+	left:0;
+	bottom:0;
+	width:100%;
+	background-color:white;
+	color:grey;
+	text-align:center;
+	font-family: Raleway
+}
+
+div h1 {
+	font-family: Quesha;
+	color:#000077
+}
+
+.session-input {
+	display:block;
+	width:80%;
+	border-radius:5px;
+	border:0.5px solid #ccc;
+	margin:10%
+}
+
+#postSessionQuestions {
+	display: none;
+	z-index:3;
+}
+
+#preSessionQuestions {
+	display: none;
+	z-index:3;
+}
+
+.sessionGlassWrapper {
+	height:300px
+}
+
+.cup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 180px;
+  border: 0.5px solid grey;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.cup:before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 80px;
+  border: 0.5px solid grey;
+  border-left:none;
+  right: -49px;
+  top: 40px;
+  border-top-right-radius: 15px;
+  box-shadow: 0 0 10px #ccc;
+  border-bottom-right-radius: 15px;
+}
+
+.sessionWater {
+	position: absolute;
+    height: 50%;
+    bottom: 0;
+    border-radius: 0 0 15px 15px;
+    left: 0;
+    background-color: #7ecef4;
+    right: 0;
+}
+
+#background-video {
+	width:100%;
+	position:fixed;
+	left:0;
+	bottom:0;
+	top:0;
+	right:0;
+	z-index:3
+}
+
+#background-video video {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%; 
+	min-height: 100%;
+	z-index:-1;
+	width:330%
+}
+
+#overlay {
+	z-index:8;
+	background-color:rgb(0,0,0,0.6);
+	position:absolute;
+	bottom:0;
+	right:0;
+	left:0;
+	top:0;
+}
+
+#sessionGoals {
+	margin: 10% 0;
+	border-spacing: 10px;
+    border-collapse: separate;
+	width:100%;
+	table-layout:fixed;
+}
+
+.sessionGoal {
+	width:100%;
+	border-radius:5px;
+	//box-shadow:0 0 15px #ccc;
+	//padding: 20px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.sessionGoal p {
+	margin: 10px 0;
+	text-align:center
+}
+
+.sessionGoal img {
+	display:block;
+	width:100%;
+	box-shadow:0 4px 10px #ccc
+}
+
+.selectedGoal img {
+	border:3px solid #000077
+}
+
+#libraryPage, #customisationPage, #statsPage {
+	display:none;
+	margin-bottom:50px
+}
+
+#sessionStartDiv {
+	width:90%;
+	border-radius:15px;
+	height:400px;
+	text-align:center;
+	/*border:0.5px solid #ccc;*/
+	position:relative;
+	margin: 0 auto
+}
+
+#sessionStartDiv span {
+	font-size: 4em;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 25px;
+	color:#3F51B5;
+	opacity:0.5;
+	background-color:rgb(255,255,255,0.7);
+}
+
+.active {
+	opacity:1
+}
+
+table.colorScheme {
+	width:100%;
+	table-layout:fixed;
+	border-spacing:3px;
+	border-collapse:separate
+}
+
+.colorSchemeBit {
+	height:70px;
+	//border-radius:5px
+}
+
+.themeDiv {
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 5px;
+    padding: 20px;
+	margin-bottom:5%
+}
+
+.selectedThemeDiv {
+	//border: 5px solid rgb(126, 206, 244);
+}
+
+span.playBtnMinimized {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    padding: 20px;
+    background-color: #6025b6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ccc
+}

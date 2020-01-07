@@ -1,0 +1,205 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Music Therapy App</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+	</head>	
+	<body>
+		<div id="menuBtn">
+			<span class='glyphicon glyphicon-align-justify' />
+		</div>
+		<div class="row">
+			<div id="question"  class="col-sm-10 col-offset-1">
+			</div>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/LocalDatabaseHandler.js"></script>
+		<script>
+			// prepare questions
+			var questions = [
+				{
+					"question": "What is your goal for today?",
+					"image": "",
+					"key": "name",
+					"body": "<input type='text' id='name' style='width:100%;padding:15px;border:0.5px solid #ccc;border-radius:5px'/>",
+					"next": true
+				},
+				{
+					"question": "How old are You?",
+					"key": "age",
+					"image": "",
+					"body": "<input type='number' id='age' max=120 min=0 style='width:100%;padding:15px;border:0.5px solid #ccc;border-radius:5px'/>",
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you feel nervous?",
+					"key": "nervousnessLevel",
+					"image": "img/anxiety.jpg",
+					"image-width": 100,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="nervousnessLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you worry uncontrollably?",
+					"key": "worryLevel",
+					"image": "img/worry.png",
+					"image-width": 50,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="worryLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you have trouble relaxing?",
+					"key": "relaxingLevel",
+					"image": "img/relax.jpg",
+					"image-width": 100,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="relaxingLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you feel restless?",
+					"key": "restlessnessLevel",
+					"image": "img/rest.jpg",
+					"image-width": 100,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="restlessnessLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you become easily annoyed?",
+					"key": "irritationLevel",
+					"image": "img/irritation.jpg",
+					"image-width": 50,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="irritationLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "In the last 2 weeks, how often did you feel as if something bad might happen?",
+					"key": "irritationLevel",
+					"image": "img/fear.jpg",
+					"image-width": 100,
+					"body": '<div style="margin-top:10%"><span style="width:50%;text-align:left;font-family:Raleway;display:inline-block">Not at all sure</span><span style="width:50%;display:inline-block;text-align:right;font-family:Raleway">Nearly every day</span><br><input id="irritationLevel" type="range" class="slider" min=0 max=3 value=0 /></div>',
+					"next": true
+				},
+				{
+					"question": "What colour do you associate with anxiety?",
+					"key": "color-anxiety",
+					"image": "",
+					"body": '',
+					"next": true
+				},
+				{
+					"question": "What colour do you associate with happiness?",
+					"key": "color-happiness",
+					"image": "",
+					"body": '',
+					"next": true
+				},
+				{
+					"question": "What colour looks most calming?",
+					"key": "color-calm",
+					"image": "",
+					"body": '',
+					"next": false
+				}
+			]
+			
+			colors = ['7ecef4', 'FFCCCC', 'bae628', 'ffffff', '000000', 'cccccc', '6b301f', 'e33d77', '95adf5', 'ffbf00'];
+			
+			// prepare color tables
+			for(var i = questions.length - 3; i < questions.length; i++) {
+				var open = false;
+				questions[i].body = '<table id="' + questions[i].key + '" style="width:100%">';
+				for(var j = 0; j < colors.length; j++) {
+					if(j % 3 == 0) {
+						questions[i].body += '<tr>';
+						open = true;
+					}
+					questions[i].body += '<td class="color-cell-td">' + 
+					'<div onclick="$(\'.selected-cell\').first().removeClass(\'selected-cell\');$(this).addClass(' + '\'selected-cell\'' + ')" class="color-cell" style="background-color:#' + colors[j] + '">' + 
+					'</div></td>';
+					if((j + 1) % 3 == 0) {
+						questions[i].body += '</tr>';
+						open = false;
+					}
+				}
+				if(open) questions[i].body += '</tr>';
+				questions[i].body += '</table>';	
+			}
+			
+			function insertAllDB(answers) {
+				// initialise database
+				var db = openDatabase('user', '1.0', 'Test DB', 2 * 1024 * 1024);
+				for(var i = 0; i < answers.length; i++) {
+					LocalDatabaseHandler.insert(answers[i].key, answers[i].value);
+				}
+				LocalDatabaseHandler.insert('anxietyScore', calculateAnxietyScore(answers), function(){
+					//window.location.href = 'results.html';
+					console.log('anxiety score logged');
+				});
+			}
+			
+			function calculateAnxietyScore(answers) {
+				var score = 0;
+				for(var i = 0; i < answers.length; i++) {
+					if(answers[i].key.toLowerCase().indexOf("level") >= 0) {
+						score += parseInt(answers[i].value);
+					}
+				}
+				return score;
+			}
+			
+			function getKeyValue(question) {
+				// get key
+				var key = question.key;
+				
+				// get value
+				var value = "";
+				if(question.key.toLowerCase().indexOf("color") >= 0) {
+					value = $('.selected-cell').first().css('background-color');
+					console.log("COLOR: " + value);
+				} else {
+					value = $('#' + question.key).val();
+				}
+				return {"key": key, "value": value}
+			}
+			
+			var answers = [];
+			
+			function showQuestion(num) {
+				html = "<div id=q" + num + "><h1>" + questions[num].question + "</h1>";
+				if(questions[num].image != "") {
+					html += "<div style='text-align:center'>";
+					html += "<img style='width:" + questions[num]["image-width"] + "%;margin-top:5%' src='" + questions[num].image + "' /></div>"; 
+				}
+				html += questions[num].body;
+				if(questions[num].next)
+					html += "<button id='next" + num + "' class='button' style='margin-top:5%'>Next</button></div>";
+				else
+					html += "<button id='next" + num + "' class='button' style='margin-top:5%'>Next</button></div>";
+				$('#question').html(html);				
+				
+				if(questions[num].next) {
+					$('#next' + num).on('click', function() {
+						answers.push(getKeyValue(questions[num]));
+						showQuestion(num + 1);
+						console.log(answers);
+					});
+				} else {
+					$('#next' + num).on('click', function() {
+						answers.push(getKeyValue(questions[num]));
+						insertAllDB(answers);
+						console.log(answers);
+					});
+				}
+			}
+			
+			$(document).ready(function(){
+				showQuestion(0);				
+			});
+		</script>
+	</body>
+</html>

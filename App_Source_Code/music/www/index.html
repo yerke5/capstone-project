@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Music Therapy App</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/welcome.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	</head>	
+	<body>
+		<div id="ocean"></div>
+		<div id="main">
+			<div id='wrapper'>
+				<p style='color:#000077;text-align:center;font-size:3em;font-family:Bubbler' id='welcome-text'>Welcome</p>
+				<div id="divider">
+					<img width="50%" id='greetImg' src="img/welcome.jpg" />
+				</div>
+				<div id='start-btn-wrapper'>
+					<a id="start">Start</a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src='js/vars.js'></script>
+		<script src='js/RemoteDatabaseHandler.js'></script>
+		<script src='js/MessageHandler.js'></script>
+		<script src='js/LocalDatabaseHandler.js'></script>
+		<script src='js/ThemeHandler.js'></script>
+		<script src='js/waves.js'></script>
+		<script>
+			$(document).ready(function(){
+				createWaves(1, "ocean");
+				createWaves(2, "ocean");
+				commonElemSelectors['startBtn'] = "#start";
+				
+				$('#start').click(function() {
+					/*console.log("remove(): Deletion about to start");
+					LocalDatabaseHandler.remove("userID", function() {*/
+						console.log("get(): Trying to get user ID from local db");
+						LocalDatabaseHandler.get('userID', function(results) {
+							var len = results.rows.length, i; 
+							// if there is no username in local db
+							if(len == 0) {	
+								console.log("askUserID(): There's no user ID, so ask for username");
+								// check if the user is new by asking their username
+								MessageHandler.askUserID(function() {
+									var username = $('#usernameInput').val();
+									console.log("getUserInfo(): Trying to get info from AWS");
+									RemoteDatabaseHandler.getUserInfo(username, function(data) {
+										// if the user is in the db, then just download the data
+										if(data.count > 0) {
+											console.log("insert(): The user is in AWS, so just download the data and store it in local db");
+											
+											for(var key in data.info) {
+												(function(k){
+													LocalDatabaseHandler.insert(key, data.info.key, null, true);
+												})(key);
+											}
+											LocalDatabaseHandler.insert("userID", username, function(){
+												window.location.href = "therapy.html";
+											}, false);
+										} else {
+											// otherwise, it means that the user hasn't taken the questionnaire yet
+											/*$('#start').on('click', function(){
+												window.location.href = "intro.html";
+											});*/
+											window.localStorage.setItem("userID", username);
+											window.location.href = "intro.html";
+										}
+									});
+								});
+							} else {
+								// take me straight to therapy
+								$('#start').on('click', function(){
+									window.location.href = "therapy.html";
+								});
+							}
+						});
+					//});
+				});
+				
+				ThemeHandler.init("index", commonElemSelectors, null);
+			});
+		</script>
+	</body>
+</html>

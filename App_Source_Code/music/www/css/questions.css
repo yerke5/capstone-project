@@ -1,0 +1,118 @@
+.numberInputSlider {
+	margin-top: 10%
+} 
+
+.numberInputSlider span {
+	width:48%;
+	text-align:left;
+	font-family: Raleway;
+	display:inline-block
+}
+
+.slider {
+	-webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 5px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  margin-top:3%;
+  border-radius:5px
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: #7ecef4; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius:50%
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.color-cell {
+	border-radius: 5px;
+	width:100%;
+	height:70px;
+	box-shadow:0 2px 5px #ccc
+}
+
+.color-cell-td {
+	padding: 5px
+}
+
+.selected-cell {
+	//box-shadow: 0 0 5px #4e4c4c;
+	border: 3px solid rgb(55, 9, 197)
+}
+
+#question {
+	text-align: center;
+	//margin: 0 auto;
+	//width: 80%;
+	margin-top:20%
+}
+
+#question h1 { 
+	font-family: Quesha;
+	color:#000077;
+	font-size:3em;
+	line-height:30px
+}
+
+.smaller {
+	width: 70%;
+    margin: 0 auto;
+    //font-size: 1.5em;
+}
+
+.audioBit {
+	display: inline-block;
+    //width: 29.6%;
+    //margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+	position:relative;
+}
+
+.audioBit img {
+	width: 100%;
+	border-radius:inherit
+}
+
+.audioBitOverlay {
+	/*position: absolute;
+    top: 20;
+    bottom: 20;
+    left: 20;
+    right: 20;*/
+	height: 60px;
+    width: 60px;
+    margin: 0 auto;
+    background-color: rgb(0,0,0,0.4);
+    border-radius: 50%;
+	text-align:center
+}
+
+.audioBitOverlay span{
+	color:white;
+	text-align:center;
+	//margin-top:26%;
+	font-size:1.5em;
+}
+
+.colorTable tr td {
+    width: 33.33%;
+}
+
